@@ -11,28 +11,47 @@ public class TheHistoryArray implements TheHistory {
 
     @Override
     public void add(String text) {
-        //TODO: check the TheHistory interface for more information
+        String parts[] = text.split(" ");
+        int a = parts.length;
+        wordsArray = Arrays.copyOf(parts, a);
     }
 
     @Override
     public void removeWord(String wordToBeRemoved) {
-        //TODO: check the TheHistory interface for more information
+        int newLength = wordsArray.length;
+        for (int i=0; i < wordsArray.length; i++) {
+            if (wordsArray[i].contains(wordToBeRemoved)){
+                newLength--;
+            }
+        }
+        String[] result = new String[newLength];
+        int count=0;
+        for (int i=0; i < wordsArray.length; i++) {
+            if (!wordsArray[i].contains(wordToBeRemoved)) {
+                result[count] = wordsArray[i];
+                count++;
+            }
+        }
+
     }
 
     @Override
     public int size() {
-        //TODO: check the TheHistory interface for more information
-        return 0;
+        return wordsArray.length;
     }
 
     @Override
     public void clear() {
-        //TODO: check the TheHistory interface for more information
+        wordsArray = new String[0];
     }
 
     @Override
     public void replaceOneWord(String from, String to) {
-        //TODO: check the TheHistory interface for more information
+        for (int i=0; i < wordsArray.length; i++) {
+            if (wordsArray[i].contains(from)) {
+                wordsArray[i] = to;
+            }
+        }
     }
 
     @Override
